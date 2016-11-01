@@ -1,0 +1,43 @@
+{
+  "name": "express-async-await-starter",
+  "version": "0.1.0",
+  "description": "Starter project for Node.js based backend based on Express, ES7 Async Await, MondoDB, Passport",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint server/src",
+    "dev": "babel-watch server/src/server.js",
+    "dev:watch": "parallelshell \"esw server/src -w\" \"npm run dev -s\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mucsi96/express-async-await-starter.git"
+  },
+  "keywords": [
+    "express",
+    "async",
+    "await",
+    "es7",
+    "mongodb",
+    "passport"
+  ],
+  "author": "Igor Muchychka <mucsi_96@yahoo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mucsi96/express-async-await-starter/issues"
+  },
+  "homepage": "https://github.com/mucsi96/express-async-await-starter#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-watch": "^2.0.3",
+    "eslint": "^3.7.1",
+    "eslint-config-standard": "^6.2.0",
+    "eslint-plugin-promise": "^3.0.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "eslint-watch": "^2.1.14",
+    "parallelshell": "^2.0.0"
+  }
+}
