@@ -30,7 +30,8 @@
   },
   "homepage": "https://github.com/mucsi96/express-async-await-starter#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "require-dir": "^0.3.1"
   },
   "devDependencies": {
     "babel-core": "^6.18.0",
