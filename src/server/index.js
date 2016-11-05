@@ -59,7 +59,7 @@ async function stop () {
       pify(server.close)(),
       closeDBconnection()
     ]),
-    pify(new Promise((resolve) => setTimeout(resolve, 30 * 1000, 'timeout')))()
+    new Promise((resolve) => setTimeout(resolve, 30 * 1000, 'timeout'))
   ])
 
   if (winner !== 'timeout') {
