@@ -2,14 +2,14 @@
   "name": "express-async-await-starter",
   "version": "0.1.0",
   "description": "Starter project for Node.js based backend based on Express, ES7 Async Await, MondoDB, Passport",
-  "main": "src/index.js",
+  "main": "src/server/index.js",
   "engines": {
-    "node": ">= 4.0.0"
+    "node": ">= 6.0.0"
   },
   "scripts": {
-    "lint": "eslint server/src",
-    "dev": "babel-watch server/src/server.js",
-    "dev:watch": "parallelshell \"esw server/src -w\" \"npm run dev -s\" "
+    "lint": "eslint src/server",
+    "dev": "babel-watch src/server/index.js",
+    "dev:watch": "parallelshell \"esw src/server -w\" \"npm run dev -s\" "
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,13 @@
   },
   "homepage": "https://github.com/mucsi96/express-async-await-starter#readme",
   "dependencies": {
+    "bcrypt": "^0.8.7",
+    "body-parser": "^1.15.2",
+    "dotenv-safe": "^2.3.3",
     "express": "^4.14.0",
+    "jsonwebtoken": "^7.1.9",
+    "mongodb": "^2.2.11",
+    "pify": "^2.3.0",
     "require-dir": "^0.3.1"
   },
   "devDependencies": {
