@@ -56,7 +56,7 @@ async function stop () {
   shuttingDown = true
   const winner = await Promise.race([
     Promise.all([
-      pify(server.close)(),
+      new Promise((resolve) => server.close(resolve)),
       closeDBconnection()
     ]),
     new Promise((resolve) => setTimeout(resolve, 30 * 1000, 'timeout'))
