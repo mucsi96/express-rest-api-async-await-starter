@@ -7,7 +7,7 @@
     "node": ">= 6.0.0"
   },
   "scripts": {
-    "test": "cucumberjs --compiler js:babel-register test/server",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text cucumberjs --compiler js:babel-register test/server",
     "lint": "eslint src/server",
     "dev": "babel-watch src/server/index.js",
     "dev:watch": "parallelshell \"esw src/server -w\" \"npm run dev -s\" "
@@ -43,10 +43,12 @@
   },
   "devDependencies": {
     "babel-core": "^6.18.0",
+    "babel-plugin-istanbul": "^2.0.3",
     "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
     "babel-watch": "^2.0.3",
     "chai": "^3.5.0",
+    "cross-env": "^3.1.3",
     "cucumber": "^1.3.1",
     "eslint": "^3.7.1",
     "eslint-config-standard": "^6.2.0",
@@ -54,8 +56,13 @@
     "eslint-plugin-standard": "^2.0.1",
     "eslint-watch": "^2.1.14",
     "mocha": "^3.1.2",
+    "nyc": "^8.4.0",
     "parallelshell": "^2.0.0",
     "supertest": "^2.0.1",
     "supertest-as-promised": "^4.0.2"
+  },
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
   }
 }
