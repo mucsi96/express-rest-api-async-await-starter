@@ -16,11 +16,16 @@ export async function connectDB () {
   db = await MongoClient.connect(url)
 }
 
+export async function manageDBIndexes () {
+  await getDB().collection('users').createIndex({username: 1}, {unique: true, w: 1})
+}
+
 export function getDB () {
   assert(db, 'No MongoDB connection was estanblished yet!')
   return db
 }
 
 export async function closeDBconnection () {
+  if (!db) return
   await db.close(true)
 }
