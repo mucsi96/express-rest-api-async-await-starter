@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import dotenv from 'dotenv-safe'
 import routes from './routes'
 import {connectDB, manageDBIndexes, closeDBconnection} from './models'
+import logger from './logger'
 
 dotenv.load()
 
@@ -41,7 +42,7 @@ app.use((err, req, res, next) => {
   }
 })
 
-export async function startServer (logger) {
+export async function startServer () {
   await connectDB()
   await manageDBIndexes()
   await new Promise((resolve) => {
@@ -51,7 +52,7 @@ export async function startServer (logger) {
 }
 
 // graceful shutdown
-export async function stopServer (logger, exit) {
+export async function stopServer (exit) {
   shuttingDown = true
   const winner = await Promise.race([
     Promise.all([

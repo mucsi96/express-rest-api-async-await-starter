@@ -35,6 +35,7 @@
     "body-parser": "^1.15.2",
     "dotenv-safe": "^2.3.3",
     "express": "^4.14.0",
+    "http-errors": "^1.5.0",
     "jsonwebtoken": "^7.1.9",
     "mongodb": "^2.2.11",
     "pify": "^2.3.0",

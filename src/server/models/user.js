@@ -1,6 +1,7 @@
 import pify from 'pify'
 import bcrypt from 'bcrypt'
 import {getDB} from '.'
+import createError from  'http-errors'
 
 const promiseBcrypt = pify(bcrypt, { include: ['hash', 'compare'] })
 
@@ -13,7 +14,7 @@ export async function createUser (username, password) {
     .updateOne({username}, {$setOnInsert: {username, password: hash}}, {upsert: true, w: 1})
 
   if (result.upsertedCount !== 1) {
-    throw new Error('You are already registered')
+    throw createError(409, 'You are already registered')
   }
 }
 

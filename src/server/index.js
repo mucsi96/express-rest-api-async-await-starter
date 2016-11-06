@@ -1,6 +1,5 @@
 import {startServer, stopServer} from './server'
-
-const logger = console
+import logger from './logger'
 
 function wrapWithErrorLogger (fn) {
   return () => fn().catch((err) => {
@@ -8,6 +7,6 @@ function wrapWithErrorLogger (fn) {
   })
 }
 
-process.on('SIGINT', wrapWithErrorLogger(() => stopServer(logger, true)))
-process.on('SIGTERM', wrapWithErrorLogger(() => stopServer(logger, true)))
-wrapWithErrorLogger(() => startServer(logger))()
+process.on('SIGINT', wrapWithErrorLogger(() => stopServer(true)))
+process.on('SIGTERM', wrapWithErrorLogger(() => stopServer(true)))
+wrapWithErrorLogger(() => startServer())()

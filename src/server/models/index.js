@@ -1,5 +1,6 @@
 import {MongoClient} from 'mongodb'
 import assert from 'assert'
+import createError from  'http-errors'
 
 let db
 
@@ -21,7 +22,7 @@ export async function manageDBIndexes () {
 }
 
 export function getDB () {
-  assert(db, 'No MongoDB connection was estanblished yet!')
+  if (!db) throw createError(500, 'Database connection error')
   return db
 }
 

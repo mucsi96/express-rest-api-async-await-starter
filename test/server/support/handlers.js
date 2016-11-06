@@ -4,11 +4,9 @@ import {getDB} from '../../../src/server/models'
 
 chai.should()
 
-const logger = console
-
 export default function () {
   this.registerHandler('BeforeFeatures', function (features, callback) {
-    startServer(logger).then(() => callback()).catch(callback)
+    startServer().then(() => callback()).catch(callback)
   })
 
   this.registerHandler('AfterScenario', function (scenario, callback) {
@@ -16,6 +14,6 @@ export default function () {
   })
 
   this.registerHandler('AfterFeatures', function (features, callback) {
-    stopServer(logger).then(() => callback()).catch(callback)
+    stopServer().then(() => callback()).catch(callback)
   })
 }
