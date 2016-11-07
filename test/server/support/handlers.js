@@ -5,15 +5,15 @@ import {getDB} from '../../../src/server/models'
 chai.should()
 
 export default function () {
-  this.registerHandler('BeforeFeatures', function (features, callback) {
-    startServer().then(() => callback()).catch(callback)
+  this.BeforeFeatures(async () => {
+    await startServer()
   })
 
-  this.registerHandler('AfterScenario', function (scenario, callback) {
-    getDB().dropDatabase().then(() => callback()).catch(callback)
+  this.AfterScenario(async () => {
+    await getDB().dropDatabase()
   })
 
-  this.registerHandler('AfterFeatures', function (features, callback) {
-    stopServer().then(() => callback()).catch(callback)
+  this.AfterFeatures(async () => {
+    await stopServer()
   })
 }
