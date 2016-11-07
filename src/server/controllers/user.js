@@ -7,3 +7,7 @@ export async function create (req, res, next) {
   res.status(201)
   next()
 }
+
+export async function get (req, res) {
+
+}

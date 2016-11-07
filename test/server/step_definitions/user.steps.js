@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt'
 export default function () {
   this.Given(/^I register with "([^"]*)" username and "([^"]*)" password$/, async (username, password) => {
     this.res = await request(app)
-      .post('/user')
+      .post('/api/user')
       .send({username, password})
   })
 
@@ -33,7 +33,7 @@ export default function () {
 
   this.When(/^I login with "([^"]*)" username and "([^"]*)" password$/, async (username, password) => {
     this.res = await request(app)
-      .post('/auth')
+      .post('/api/auth')
       .send({username, password})
   })
 }
