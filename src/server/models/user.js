@@ -27,6 +27,7 @@ export async function findUserByUserName (username) {
 
 export async function checkUserPassword (username, password) {
   const user = await findUserByUserName(username)
+  if (!user) return false
   const ok = await promiseBcrypt.compare(password, user.password)
   return ok
 }
