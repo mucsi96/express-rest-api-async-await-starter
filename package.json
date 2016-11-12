@@ -33,8 +33,9 @@
   "dependencies": {
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
-    "dotenv-safe": "^2.3.3",
+    "dotenv": "^2.0.0",
     "express": "^4.14.0",
+    "express-jwt": "^5.1.0",
     "http-errors": "^1.5.0",
     "jsonwebtoken": "^7.1.9",
     "mongodb": "^2.2.11",

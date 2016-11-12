@@ -1,13 +1,14 @@
 import {MongoClient} from 'mongodb'
 import assert from 'assert'
 import createError from  'http-errors'
+import {getEnvProp} from '../env'
 
 let db
 
 function getMongoUrl () {
-  const url = process.env.MONGO_URL
-  const user = process.env.MONGO_USER
-  const pass = process.env.MONGO_PASS
+  const url = getEnvProp('MONGO_URL')
+  const user = getEnvProp('MONGO_USER')
+  const pass = getEnvProp('MONGO_PASS')
 
   return `mongodb://${user}${pass ? ':' : ''}${pass}@${url}`
 }

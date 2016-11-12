@@ -3,6 +3,8 @@ import {jwtRegex, mongoDbIdRegex} from '../helpers'
 import app from '../../../src/server/server'
 import {getDB} from '../../../src/server/models'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import {getEnvProp} from '../../../src/server/env'
 
 export default function () {
   this.Given(/^I register with "([^"]*)" username and "([^"]*)" password$/, async (username, password) => {
@@ -36,6 +38,49 @@ export default function () {
       .post('/api/auth')
       .send({username, password})
   })
+
+  this.When(/^I am logged in$/, async () => {
+    this.user = {
+      username: 'Jack'
+    }
+    const result = await getDB().collection('users').insertOne({
+      username: this.user.username
+    })
+
+    this.user.id = result.insertedId.toString()
+    this.token = jwt.sign({
+      id: this.user.id
+    }, getEnvProp('SERVER_SECRET'), {
+      expiresIn: '2h'
+    })
+  })
+
+  this.When(/^I request private user info without authorization token$/, async () => {
+    this.res = await request(app)
+      .get('/api/user')
+  });
+
+  this.When(/^I request private user info with wrong authorization token$/, async () => {
+    const badToken = jwt.sign({
+      id: 0
+    }, 'wrongsecret', {
+      expiresIn: '2h'
+    })
+    this.res = await request(app)
+      .get('/api/user')
+      .set('Authorization', `Bearer ${badToken}`)
+  });
+
+  this.When(/^I request private user info with correct authorization token$/, async () => {
+    this.res = await request(app)
+      .get('/api/user')
+      .set('Authorization', `Bearer ${this.token}`)
+  });
+
+  this.Then(/^I should get my user info$/, async () => {
+    this.res.body.user.id.should.equal(this.user.id)
+    this.res.body.user.username.should.equal(this.user.username)
+  });
 }
 
 

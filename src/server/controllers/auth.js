@@ -1,6 +1,7 @@
 import {checkUserPassword, findUserByUserName} from '../models/user'
 import jwt from 'jsonwebtoken'
 import createError from  'http-errors'
+import {getEnvProp} from '../env'
 
 export async function login (req, res) {
   const {username, password} = req.body
@@ -15,7 +16,7 @@ export async function login (req, res) {
 
   const token = jwt.sign({
     id: user._id
-  }, process.env.SERVER_SECRET, {
+  }, getEnvProp('SERVER_SECRET'), {
     expiresIn: '2h'
   })
 

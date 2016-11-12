@@ -1,3 +1,4 @@
+import {ObjectID} from 'mongodb'
 import pify from 'pify'
 import bcrypt from 'bcrypt'
 import {getDB} from '.'
@@ -16,6 +17,13 @@ export async function createUser (username, password) {
   if (result.upsertedCount !== 1) {
     throw createError(409, 'You are already registered')
   }
+}
+
+export async function findUserById (id) {
+  const user = await getDB()
+    .collection('users')
+    .findOne({_id: new ObjectID(id)})
+  return user
 }
 
 export async function findUserByUserName (username) {

@@ -28,3 +28,19 @@ Feature: user handling
      Then I should get an error message "Invalid credentials"
       And the status code should be "401"
 
+  Scenario: decline private user info request without authorization token
+     When I request private user info without authorization token
+     Then I should get an error message "No authorization token was found"
+      And the status code should be "401"
+
+  Scenario: decline private user info request with wrong authorization token
+     When I request private user info with wrong authorization token
+     Then I should get an error message "invalid signature"
+      And the status code should be "401"
+
+  Scenario: providing private user info with correct authorization token
+    Given I am logged in
+     When I request private user info with correct authorization token
+     Then I should get my user info
+      And the status code should be "200"
+

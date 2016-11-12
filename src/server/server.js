@@ -1,13 +1,11 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import dotenv from 'dotenv-safe'
 import routes from './routes'
 import {connectDB, manageDBIndexes, closeDBconnection} from './models'
 import logger from './logger'
+import {getEnvProp} from './env'
 
-dotenv.load()
-
-const PORT = process.env.PORT
+const PORT = getEnvProp('PORT')
 const app = express()
 let shuttingDown = false
 let server
