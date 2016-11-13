@@ -2,7 +2,7 @@ import {ObjectID} from 'mongodb'
 import pify from 'pify'
 import bcrypt from 'bcrypt'
 import {getDB} from '.'
-import createError from  'http-errors'
+import createError from 'http-errors'
 
 const promiseBcrypt = pify(bcrypt, { include: ['hash', 'compare'] })
 

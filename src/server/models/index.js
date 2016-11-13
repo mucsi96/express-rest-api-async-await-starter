@@ -1,6 +1,5 @@
 import {MongoClient} from 'mongodb'
-import assert from 'assert'
-import createError from  'http-errors'
+import createError from 'http-errors'
 import {getEnvProp} from '../env'
 
 let db

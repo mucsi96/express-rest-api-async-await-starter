@@ -1,6 +1,6 @@
 import {checkUserPassword, findUserByUserName} from '../models/user'
 import jwt from 'jsonwebtoken'
-import createError from  'http-errors'
+import createError from 'http-errors'
 import {getEnvProp} from '../env'
 
 export async function login (req, res) {
